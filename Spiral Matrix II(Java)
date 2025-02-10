@@ -1,0 +1,123 @@
+Given a positive integer n, generate an n x n matrix filled with elements from 1 to n2 in spiral order.
+Example 1:
+Input: n = 3
+Output: [[1,2,3],[8,9,4],[7,6,5]]
+Example 2:
+Input: n = 1
+Output: [[1]]
+Constraints:
+1 <= n <= 20
+Coding:
+public class Solution {
+
+    public static int[][] generateMatrix(int n) {
+        int[][] matrix = new int[n][n];
+        int left = 0, right = n - 1, top = 0, bottom = n - 1;
+        int num = 1;
+
+        while (left <= right && top <= bottom) {
+            for (int i = left; i <= right; i++) {
+                matrix[top][i] = num++;
+            }
+            top++;
+            for (int i = top; i <= bottom; i++) {
+                matrix[i][right] = num++;
+            }
+            right--;
+            if (top <= bottom) {
+                for (int i = right; i >= left; i--) {
+                    matrix[bottom][i] = num++;
+                }
+                bottom--;
+            }
+            if (left <= right) {
+                for (int i = bottom; i >= top; i--) {
+                    matrix[i][left] = num++;
+                }
+                left++;
+            }
+        }
+
+        return matrix;
+    }
+
+    public static void printMatrix(int[][] matrix) {
+        for (int i = 0; i < matrix.length; i++) {
+            for (int j = 0; j < matrix[i].length; j++) {
+                System.out.print(matrix[i][j] + " ");
+            }
+            System.out.println();
+        }
+    }
+
+    public static void main(String[] args) {
+        int n1 = 3;
+        int[][] result1 = generateMatrix(n1);
+        printMatrix(result1);  // Output: 
+        int n2 = 1;
+        int[][] result2 = generateMatrix(n2);
+        printMatrix(result2);  // Output: [[1]]
+    }
+}
+Output:
+public class Solution {
+
+    public static int[][] generateMatrix(int n) {
+        int[][] matrix = new int[n][n];
+        int left = 0, right = n - 1, top = 0, bottom = n - 1;
+        int num = 1;
+
+        while (left <= right && top <= bottom) {
+            for (int i = left; i <= right; i++) {
+                matrix[top][i] = num++;
+            }
+            top++;
+            for (int i = top; i <= bottom; i++) {
+                matrix[i][right] = num++;
+            }
+            right--;
+            if (top <= bottom) {
+                for (int i = right; i >= left; i--) {
+                    matrix[bottom][i] = num++;
+                }
+                bottom--;
+            }
+            if (left <= right) {
+                for (int i = bottom; i >= top; i--) {
+                    matrix[i][left] = num++;
+                }
+                left++;
+            }
+        }
+
+        return matrix;
+    }
+
+    public static void printMatrix(int[][] matrix) {
+        for (int i = 0; i < matrix.length; i++) {
+            for (int j = 0; j < matrix[i].length; j++) {
+                System.out.print(matrix[i][j] + " ");
+            }
+            System.out.println();
+        }
+    }
+
+    public static void main(String[] args) {
+        int n1 = 3;
+        int[][] result1 = generateMatrix(n1);
+        printMatrix(result1);  
+        int n2 = 1;
+        int[][] result2 = generateMatrix(n2);
+        printMatrix(result2);  
+    }
+}
+OutputL:
+Input
+n =
+3
+Output
+[[1,2,3],[8,9,4],[7,6,5]]
+Expected
+[[1,2,3],[8,9,4],[7,6,5]]
+
+
