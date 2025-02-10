@@ -1,0 +1,66 @@
+Given the head of a sorted linked list, delete all duplicates such that each element appears only once. Return the linked list sorted as well.
+Example 1:
+Input: head = [1,1,2]
+Output: [1,2]
+Example 2:
+Input: head = [1,1,2,3,3]
+Output: [1,2,3]
+Constraints:
+The number of nodes in the list is in the range [0, 300].
+-100 <= Node.val <= 100
+The list is guaranteed to be sorted in ascending order.
+Coding:
+class ListNode:
+    def __init__(self, val=0, next=None):
+        self.val = val
+        self.next = next
+
+class Solution:
+    def deleteDuplicates(self, head: ListNode) -> ListNode:
+        current = head
+        while current and current.next:
+            if current.val == current.next.val:
+                current.next = current.next.next  # Skip duplicate node
+            else:
+                current = current.next  # Move to the next node
+        return head
+
+# Helper function to create a linked list from a list
+def create_linked_list(lst):
+    if not lst:
+        return None
+    head = ListNode(lst[0])
+    current = head
+    for val in lst[1:]:
+        current.next = ListNode(val)
+        current = current.next
+    return head
+
+# Helper function to print a linked list
+def print_linked_list(head):
+    values = []
+    while head:
+        values.append(head.val)
+        head = head.next
+    print(values)
+
+# Example usage
+sol = Solution()
+head = create_linked_list([1,1,2])
+print_linked_list(sol.deleteDuplicates(head))  # Output: [1,2]
+
+head = create_linked_list([1,1,2,3,3])
+print_linked_list(sol.deleteDuplicates(head))  # Output: [1,2,3]
+Output:
+Input
+head =
+[1,1,2]
+Stdout
+[1, 2]
+[1, 2, 3]
+Output
+[1,2]
+Expected
+[1,2]
+
+
